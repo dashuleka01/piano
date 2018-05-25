@@ -9,10 +9,12 @@ import javafx.stage.Stage;
 import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main extends Application {
-
-    Robot robot = new Robot();
 
     public Main() throws AWTException {
     }

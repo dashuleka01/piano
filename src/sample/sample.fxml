@@ -27,9 +27,16 @@
             <Button fx:id="note_HH" layoutX="570.0" layoutY="7.0" mnemonicParsing="false" prefHeight="170.0" prefWidth="60.0" text="note_HH" />
          </children>
       </AnchorPane>
-      <Label layoutX="314.0" layoutY="44.0" text="PIANO">
+      <Label fx:id="PianoText" layoutX="314.0" layoutY="77.0" text="PIANO">
          <font>
             <Font name="System Italic" size="58.0" />
+         </font>
+      </Label>
+      <TextField fx:id="fileField" layoutX="259.0" layoutY="146.0" prefHeight="31.0" prefWidth="390.0" />
+      <Button fx:id="file_button" layoutX="685.0" layoutY="146.0" mnemonicParsing="false" text="Button" />
+      <Label fx:id="label_file" layoutX="71.0" layoutY="144.0" text="Введите файл">
+         <font>
+            <Font name="System Italic" size="24.0" />
          </font>
       </Label>
    </children>

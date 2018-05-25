@@ -1,35 +1,43 @@
 package sample;
 
-import java.io.File;
+import java.awt.*;
+import java.io.*;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.InnerShadow;
+import javafx.scene.input.InputEvent;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.paint.Color;
 import sun.plugin.com.Utils;
 
-public class Controller {
+import javax.xml.soap.Text;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.util.concurrent.TimeUnit;
 
+import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
+
+public class Controller {
     @FXML
     private ResourceBundle resources;
 
     @FXML
     private URL location;
-
-    @FXML
-    private Button note_D;
-
-    @FXML
-    private Button note_C;
-
-    @FXML
-    private Button note_A;
 
     @FXML
     private Button note_CC;
@@ -47,6 +55,27 @@ public class Controller {
     private Button note_HH;
 
     @FXML
+    private Label PianoText;
+
+    @FXML
+    private Label label_file;
+
+    @FXML
+    private Button note_D;
+
+    @FXML
+    private Button note_C;
+
+    @FXML
+    private Button note_A;
+
+    @FXML
+    private Button file_button;
+
+    @FXML
+    private TextField fileField;
+
+    @FXML
     private Button note_H;
 
     @FXML
@@ -58,25 +87,104 @@ public class Controller {
     @FXML
     private Button note_E;
 
-    public void pressNote(String file){
+
+
+    public void pressNote(String file) {
         Media music = new Media(new File(file).toURI().toString());
         MediaPlayer player = new MediaPlayer(music);
         player.play();
+
+        note_A.setEffect(null);
     }
+
+    public String getFile() {
+        return fileField.getText();
+    }
+
+    public void playFromFile(String text) throws FileNotFoundException, InterruptedException {
+        FileReader fileReader = new FileReader(text);
+        Scanner scanner = new Scanner(fileReader);
+
+        while (scanner.hasNextLine()) {
+            for (String i : scanner.nextLine().split(" ")) {
+                switch (i) {
+                    case "a":
+                        note_A.fire();
+                        break;
+
+                    case "c":
+                        note_C.fire();
+                        break;
+
+                    case "cc":
+                        note_CC.fire();
+                        break;
+
+                    case "d":
+                        note_D.fire();
+                        break;
+
+                    case "e":
+                        note_E.fire();
+                        break;
+
+                    case "ee":
+                        note_EE.fire();
+                        break;
+
+                    case "f":
+                        note_F.fire();
+                        break;
+
+                    case "ff":
+                        note_FF.fire();
+                        break;
+
+                    case "g":
+                        note_G.fire();
+                        break;
+
+                    case "gg":
+                        note_GG.fire();
+                        break;
+
+                    case "h":
+                        note_H.fire();
+                        break;
+
+                    case "hh":
+                        note_HH.fire();
+                        break;
+                }
+                Thread.sleep(1000);
+            }
+        }
+    }
+
 
     @FXML
     void initialize() {
-        note_A.setOnAction(event ->  pressNote("src/sample/music/a.wav"));
-        note_C.setOnAction(event ->  pressNote("src/sample/music/c.wav"));
-        note_CC.setOnAction(event ->  pressNote("src/sample/music/cc.wav"));
-        note_D.setOnAction(event ->  pressNote("src/sample/music/d.wav"));
-        note_E.setOnAction(event ->  pressNote("src/sample/music/e.wav"));
-        note_EE.setOnAction(event ->  pressNote("src/sample/music/ee.wav"));
-        note_F.setOnAction(event ->  pressNote("src/sample/music/f.wav"));
-        note_FF.setOnAction(event ->  pressNote("src/sample/music/ff.wav"));
-        note_G.setOnAction(event ->  pressNote("src/sample/music/g.wav"));
-        note_GG.setOnAction(event ->  pressNote("src/sample/music/gg.wav"));
-        note_H.setOnAction(event ->  pressNote("src/sample/music/h.wav"));
-        note_HH.setOnAction(event ->  pressNote("src/sample/music/hh.wav"));
+        note_A.setOnAction(event -> pressNote("src/sample/music/a.wav"));
+        note_C.setOnAction(event -> pressNote("src/sample/music/c.wav"));
+        note_CC.setOnAction(event -> pressNote("src/sample/music/cc.wav"));
+        note_D.setOnAction(event -> pressNote("src/sample/music/d.wav"));
+        note_E.setOnAction(event -> pressNote("src/sample/music/e.wav"));
+        note_EE.setOnAction(event -> pressNote("src/sample/music/ee.wav"));
+        note_F.setOnAction(event -> pressNote("src/sample/music/f.wav"));
+        note_FF.setOnAction(event -> pressNote("src/sample/music/ff.wav"));
+        note_G.setOnAction(event -> pressNote("src/sample/music/g.wav"));
+        note_GG.setOnAction(event -> pressNote("src/sample/music/gg.wav"));
+        note_H.setOnAction(event -> pressNote("src/sample/music/h.wav"));
+        note_HH.setOnAction(event -> pressNote("src/sample/music/hh.wav"));
+
+        file_button.setOnAction(event -> {
+            try {
+                playFromFile(getFile());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }
