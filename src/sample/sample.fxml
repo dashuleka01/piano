@@ -47,7 +47,7 @@
          </font>
       </Label>
       <TextField fx:id="fileField" layoutX="566.0" layoutY="141.0" prefHeight="31.0" prefWidth="390.0" />
-      <Button fx:id="file_button" layoutX="992.0" layoutY="141.0" mnemonicParsing="false" text="Button" />
+      <Button fx:id="file_button" layoutX="992.0" layoutY="141.0" mnemonicParsing="false" text="play" />
       <Label fx:id="label_file" layoutX="378.0" layoutY="139.0" text="Введите файл">
          <font>
             <Font name="System Italic" size="24.0" />

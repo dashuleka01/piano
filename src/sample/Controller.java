@@ -1,32 +1,15 @@
 package sample;
 
-import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
-import com.sun.javafx.scene.control.skin.FXVK;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.InnerShadow;
-import javafx.scene.input.InputEvent;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.MouseEvent;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
-import javafx.scene.paint.Color;
-import sun.plugin.com.Utils;
-
-import javax.xml.soap.Text;
-import java.util.concurrent.TimeUnit;
 
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
@@ -190,6 +173,9 @@ public class Controller {
                     case "hh":
                         note_HH.fire();
                         break;
+
+                    default:
+                        error_label.setText("Неверный формат данных");
                 }
                 Thread.sleep(1000);
             }
@@ -231,9 +217,11 @@ public class Controller {
             } catch (FileNotFoundException e) {
                 error_label.setText("Файл не найден");
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                //e.printStackTrace();
+
             } catch (IOException e) {
-                e.printStackTrace();
+                error_label.setText("Ytdthysq a");
+                //e.printStackTrace();
             }
         });
     }
